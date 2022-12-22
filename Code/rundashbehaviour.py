@@ -329,7 +329,7 @@ def FlencTest (rbdash, explicit=False, slowPace = False):
     print("duration flw encourage " + str(end-begin))
 
 def main():
-    print ("começa")
+    print ("start")
 
     StartTime = time.time()
     rbdash= robot(StartTime)

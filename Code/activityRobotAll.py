@@ -270,11 +270,10 @@ class activityRobot():
 		logging.info(self.logStates)
 		logging.info("======Suggested/atual speaker  CHANGES======")
 		logging.info(self.logSpeaker)
-		# VALIDAR TEMPOS POR SPEAKER, STATE ....
+
 		logging.info("======Expressions TIMES======")
 		logging.info(self.logTimePerExpression)
-		#logging.info("======ROOM TOTAL TIMES======")
-		#logging.info(logTotalTimePerRoom)
+
 
 		self.robot_log = []
 		self.robot_log.append(self.condition)

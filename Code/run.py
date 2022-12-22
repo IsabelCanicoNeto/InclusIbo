@@ -90,11 +90,6 @@ def main():
     parser.add_argument('-cID', help="id the child ", nargs="+", default=[1, 2, 3])
     parser.add_argument('-grpID', help="id of the group ", type=int, default=1)
     parser.add_argument('-name', help="sound with name of the child for explicit reference", nargs="+", default=["my8", "my9", "my10"])
-    #parser.add_argument('-idleTime', type=float, help="Time to maintain idle stage (s)", default=5.0)
-    #parser.add_argument('-mixedupTime', type=float, help="Time to maintain mixedup stage (s)", default=10.0)
-    #parser.add_argument('-confusedTime', type=float, help="Time to maintain confused stage (s)", default=10.0)
-    #parser.add_argument('-maxspeechTime', type=float, help="Max time to maintain speechTime per user (s)", default=150.0) # 2.5 minutos
-
 
 
     # Miscellaneous
@@ -205,9 +200,7 @@ def main():
                        activity.lastround = True
                        activity.warninglastminute()
 
-            #mic1.leave = True
-            #mic2.leave = True
-            #mic3.leave = True
+
 
 
     mic1.stop_detecting()
@@ -259,14 +252,10 @@ def main():
         unique_id = getrandbits(64)
 
         print(f"*** Plotting and saving activity logs ***", end="", flush=True)
-        # todo : if there is an additional condition add to the directory // add robot information
+
         plot_directory = f"plots/{opt.condition}/{opt.condition}/{opt.grpID}/"
         pathlib.Path(plot_directory).mkdir(parents=True, exist_ok=True)
 
-        # todo : plots // add robot information
-        # plotmic(timeline, mic1_logs, mic2_logs, mic3_logs, ylabel='Microphone', name=f"{plot_directory}/microphone_{unique_id}")
-        # plotactivity(timeline, activity_logs, activity.robot_log, ylabel='Activity', name=f"{plot_directory}/activity_{unique_id}")
-        # plotrobotactivity(timeline, activity.robot_log, ylabel='Robot Expression', name=f"{plot_directory}/activityrobot_{unique_id}")
 
         result_directory = f"results/{opt.condition}/{opt.grpID}/"
         pathlib.Path(result_directory).mkdir(parents=True, exist_ok=True)
@@ -291,8 +280,7 @@ def main():
         np.savetxt(result_directory + f"/mic1_logsdb_{opt.grpID}_{StartTime}.csv", mic1_logsdb ,delimiter=',', fmt = '%s')
         np.savetxt(result_directory + f"/mic2_logsdb_{opt.grpID}_{StartTime}.csv", mic2_logsdb ,delimiter=',', fmt = '%s')
         np.savetxt(result_directory + f"/mic3_logsdb_{opt.grpID}_{StartTime}.csv", mic3_logsdb ,delimiter=',', fmt = '%s')
-        #np.save(result_directory + f"/mic2_logs_{StartTime}.npy", np.array(mic2_logs, dtype=object))
-        #np.save(result_directory + f"/mic3_logs_{StartTime}.npy", np.array(mic3_logs, dtype=object))
+
         np.savetxt(result_directory + f"/activity_logs_{opt.grpID}_{StartTime}.csv", activity_logs,delimiter=',', fmt = '%s')
         if condition != "baseline" :
             np.savetxt(result_directory + f"/SSflowrobot_logs_{opt.grpID}_{StartTime}.csv", activity.robot_log[1],delimiter=',', fmt = '%s')
